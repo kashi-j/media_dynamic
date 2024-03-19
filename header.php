@@ -133,8 +133,6 @@ $tag = get_queried_object();
                   <?php
                   $this_category_img = get_field( 'category_img', 'category_' . $cate->term_id );
                   $size = 'thumbnail';
-                  $this_category_img_url = $this_category_img['sizes'][$size];
-
                   // 子カテゴリー
                   $args = array(
                     'parent' => $cate->term_id,
