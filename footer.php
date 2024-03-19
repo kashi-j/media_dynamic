@@ -43,7 +43,6 @@ $categories = get_categories($args);
             <?php
             $this_category_img = get_field( 'category_img', 'category_' . $cate->term_id );
             $size = 'thumbnail';
-            $this_category_img_url = $this_category_img['sizes'][$size];
             $parent_category_color = get_field( 'font_color', 'category_' . $cate->term_id );
 
             // 子カテゴリー
@@ -304,128 +303,6 @@ $('#top_img').click(function () {
     document.getElementsByTagName("head")[0].appendChild(mf);
   })();
 </script>
-
-<!-- <script src="<?php echo get_template_directory_uri(); ?>/js/flexibleSearch/mustache.js"></script> -->
-<!-- <script src="<?php echo get_template_directory_uri(); ?>/js/flexibleSearch/flexibleSearch.min.js"></script> -->
 <script src="<?php echo get_template_directory_uri(); ?>/js/stickyfill.min.js"></script>
-<script type="text/javascript">
-$(function($) {
-    var searchFormAction = "<?php bloginfo( 'url' ); ?>/search";
-    // $('#search').flexibleSearch({
-    //     searchDataPath: "<?php bloginfo( 'url' ); ?>/single_posts_data_fulltext_search",
-    //     // searchDataPathPreload: "<?php bloginfo( 'url' ); ?>/single_posts_data_fulltext_search",
-    //     searchFormAction: searchFormAction,
-    //     loadingImgPath: "<?php echo get_template_directory_uri(); ?>/js/flexibleSearch/loading.gif",
-    //     // searchFormCreation: false,
-    //     excludeSearchParams: "post_id,permalink,thumb_url,excerpt,cate_name,cate_color,cld_cate_name,tags,date",
-    //     hidePageNumber: true,
-    //     showTurnPage: false,
-    //     limit: 1000,
-    //     searchFormHTML: [
-    //       '<form action="'+ searchFormAction +'" method="GET">',
-    //       '<input type="text" name="search" value="" placeholder="キーワードから探す">',
-    //       '<input type="submit" value="検索">',
-    //       '</form>'
-    //     ].join(""),
-    //     searchFormInputPlaceholder: "キーワードを入力してください",
-    //     resultItemTmpl: [
-    //       '<ul class="posts posts--col2 static_paginate">',
-    //       '{{#items}}',
-    //       '<li class="post">',
-    //       '<a href="{{permalink}}" data-wpel-link="internal">',
-    //       '<div class="post__imgWrap">',
-    //       '<img src="{{thumb_url}}" class="attachment-post-thumbnail size-post-thumbnail wp-post-image" alt="" loading="lazy">',
-    //       '</div>',
-    //       '<div class="post__textArea">',
-    //       '<div class="post__categoryArea"><span class="post__category entry-label sp_only" style="background:{{cate_color}};">{{cate_name}}</span><object class="post__childCategories"><span class="post__childCategory">{{cld_cate_name}}</span></object></div>',
-    //       '<h3 class="post__heading clamp2">{{title}}</h3>',
-    //       '<div class="post__tagArea">',
-    //       '<object class="tags">',
-    //       '{{#tags}}',
-    //       '<a class="tag" href="/tag/{{slug}}"><p>#{{name}}</p></a>',
-    //       '{{/tags}}',
-    //       '</object>',
-    //       '</div>',
-    //       '</div>',
-    //       '<span class="post__label entry-label tb_pc" style="background:{{cate_color}};">{{cate_name}}</span>',
-    //       '</a>',
-    //       '</li>',
-    //       '{{/items}}',
-    //       '</ul>'
-    //     ].join(""),
-    //     resultMsgTmpl: [
-    //       '{{#keywordArray}}「{{.}}」{{/keywordArray}}{{^keywordArray}}「キーワードなし」{{/keywordArray}}の検索結果'
-    //     ].join(""),
-    //     resultMsgInsertMethods: [
-    //       {
-    //         "selector": "#search-page-title",
-    //         "method": "append"
-    //       }
-    //     ],
-    //     resultMetaTitleTmpl: "{{#keywordArray}}「{{.}}」{{/keywordArray}}{{^keywordArray}}「キーワードなし」{{/keywordArray}}の検索結果 | サイト名",
-    //     resultComplete: function(totalResults){
-    //       // 静的ページング
-    //       history.replaceState(null, document.getElementsByTagName('title')[0].innerHTML, null);
-    //       window.addEventListener('popstate', function(e) {
-    //         window.location.reload();
-    //       });
-    //       var postListLength = $('.static_paginate:first li').length;
-    //       var limitPaginationValue = false;
-    //       if (postListLength > 40){
-    //         limitPaginationValue = 5;
-    //       }
-    //       $('.static_paginate').paginathing({
-    //         perPage: 8,
-    //         limitPagination: limitPaginationValue,
-    //         firstText: '最初',
-    //         lastText: '最後',
-    //         prevText:'&lt;',
-    //         nextText:'&gt;',
-    //         activeClass: 'navi-active',
-    //         containerClass: 'pagination-container pagination-static_paginate'
-    //       });
-    //       if ( $('.pagination .prev').hasClass('disabled') && $('.pagination .next').hasClass('disabled') ) {
-    //         $('.pagination-container').css('display', 'none');
-    //       }
-
-    //       // 結果が0の場合
-    //       if (postListLength == 0) {
-    //         var msgHtml = '<p class="search-result-msg">条件に該当する記事が見つかりませんでした。</p>';
-    //         $('#fs-result').prepend(msgHtml);
-    //       }
-
-    //       // メタタイトルと同じ物をog:title、twitter:titleにセットする
-    //       $('meta[property="og:title"]').attr('content', document.title);
-    //       $('meta[name="twitter:title"]').attr('content', document.title);
-    //       return;
-    //     },
-    //     dummy: null
-    // });
-
-  // 共通サイド　Store導線　もっと見るボタン
-  // $('.btn-more-store_lead').on('click', function(){
-  //   const isShow = $(this).hasClass('is-show');
-  //   if(!isShow){
-  //     // 表示されていない場合
-  //     $('.store_lead_list li').each(function(i, e){
-  //       if(i >= 2){
-  //         $(e).slideDown();
-  //       }
-  //     });
-  //     $(this).children('span').text('元に戻す')
-  //     $(this).addClass('is-show');
-  //   }else{
-  //     // 表示されている場合
-  //     $('.store_lead_list li').each(function(i, e){
-  //       if(i >= 2){
-  //         $(e).slideUp();
-  //       }
-  //     });
-  //     $(this).children('span').text('もっと見る')
-  //     $(this).removeClass('is-show')
-  //   }
-  // });
-});
-</script>
 </body>
 </html>

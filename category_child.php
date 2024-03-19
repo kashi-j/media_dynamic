@@ -20,7 +20,12 @@
 
       <div class="category_header">
         <div class="category_header_area">
-          <div class="category_header_area_img"><?php if (!is_null($this_category_img)): ?><img src="<?php echo $this_category_img_url; ?>" alt=""><?php endif; ?>
+          <div class="category_header_area_img">
+            <?php if(!empty($this_category_img)): ?>
+              <img src="<?php echo $this_category_img_url ?>" alt="aaaa">
+              <?php else: ?>
+                <img src="<?php echo get_template_directory_uri() . '/img/noimage.png' ?> " alt="bbb">
+            <?php endif; ?>
           <h1 class="sp_tb"><?php echo $cate->name; ?></h1>
           </div>
           <div class="category_header_area_text">
@@ -39,7 +44,7 @@
       if( $posts):
       ?>
         <div class="tag_list">
-          <p><?php echo $cate->name; ?>の新着キーワード</p>
+          <p><?php echo $cate->name; ?>のキーワード</p>
           <div class="meta_area">
             <object>
               <?php
@@ -101,14 +106,14 @@
                     if( $posts ):
                     ?>
                     <div class="postArea">
-                      <h2 class="postArea__heading">新着記事</h2>
+                      <h2 class="postArea__heading">New</h2>
                       <ul class="posts posts--col2 static_paginate">
                         <?php
                         foreach ( $posts as $post ) :
                           setup_postdata( $post );
                           $thumb = get_the_post_thumbnail();
                           if($thumb === ''){
-                            $thumb = '<img src="'.get_stylesheet_directory_uri().'/img/alone-1.png">';
+                            $thumb = '<img src="'.get_stylesheet_directory_uri().'/img/noimage.png">';
                           }
                           $cate = get_the_category();
                           // 親カテゴリー
